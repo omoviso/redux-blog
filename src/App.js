@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Header from "./Header/header";
+import Body from "./Body/body";
+import { BrowserRouter } from "react-router-dom";
+
+// import ConvertTime from "./sideFeatures/convertTime";
 
 class App extends Component {
   render() {
+    // ConvertTime();
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Body />
+        </div>
+      </BrowserRouter>
     );
   }
 }

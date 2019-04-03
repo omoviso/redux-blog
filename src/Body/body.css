@@ -1,0 +1,33 @@
+.contents {
+  display: flex;
+  padding: 7px;
+  flex-flow: row nowrap;
+}
+
+.contents .summary {
+  flex: 1.25;
+  /* width: 10%; */
+}
+
+.contents .summary .card {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.contents .notifications {
+  flex: 1;
+}
+
+.title {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.author {
+  margin-bottom: 7px;
+}
+
+.timeline {
+  margin-bottom: 20px;
+}
