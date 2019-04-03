@@ -8,7 +8,9 @@ const Sumamry = ({ articles }) => {
       return (
         <div className="card" key={article.id}>
           <h1 className="title">
-            <Link to={`/article/${article.id}`}>{article.title}</Link>
+            <Link className="linkColor" to={`/article/${article.id}`}>
+              {article.title}
+            </Link>
           </h1>
           <h4 className="author">Author: {article.author}</h4>
           <p className="timeline">

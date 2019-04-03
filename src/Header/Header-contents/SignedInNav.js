@@ -6,17 +6,17 @@ const SignedInNav = props => {
     <div className="navBar">
       <ul>
         <li>
-          <Link className="linkColor" to="/profile">
+          <Link className="" to="/profile">
             My Profile
           </Link>
         </li>
         <li>
-          <Link className="linkColor" to="/create">
+          <Link className="" to="/create">
             Create New Article
           </Link>
         </li>
         <li>
-          <Link className="linkColor" to="/signin">
+          <Link className="" to="/signin">
             Log Out
           </Link>
         </li>
