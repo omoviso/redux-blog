@@ -2,18 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./Reducers/rootReducer";
 import thunk from "redux-thunk";
 import * as serviceWorker from "./serviceWorker";
-import { getFirestore } from "redux-firestore";
-import { getFirebase } from "react-redux-firebase";
+import { reduxFirestore, getFirestore } from "redux-firestore";
+import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
+import fbConfig from "./Config/fbConfig";
 import CalculateNewTime from "./Actions/calculateNewTime";
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore }))
+  compose(
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    reduxFirestore(fbConfig),
+    reactReduxFirebase(fbConfig)
+  )
 );
 setInterval(() => CalculateNewTime(store), 1000);
 ReactDOM.render(

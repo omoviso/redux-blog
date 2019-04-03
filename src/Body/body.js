@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Content from "./Content/content";
-import CreateArticle from "./CreateNewArticleForm/createArticle";
+import CreateArticle from "./CreateNewArticleForm/createArticleForm";
 import Article from "./Article/article";
 import SignInForm from "./SignInForm/signInForm";
 import SignUpForm from "./SignUpForm/signUpForm";

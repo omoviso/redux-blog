@@ -1,3 +1,7 @@
+import authReducer from "./authReducer";
+import projectReducer from "./projectReducer";
+import { combineReducers } from "redux";
+
 const initState = {
   articles: [
     // { id: "1", title: "CSS", author: "Thanh Nguyen", content: "Learn CSS" }
@@ -7,20 +11,20 @@ const initState = {
 const rootReducer = (state = initState, action) => {
   // console.log(state, action);
   if (action.type === "ADD_ARTICLE") {
-    const { title, author, content, postedTime } = action;
-    const newArticle = {
-      id: state.articles.length
-        ? state.articles[state.articles.length - 1].id + 1
-        : 1,
-      title,
-      author,
-      content,
-      postedTime,
-      convertedPostedTime: "a few seconds ago"
-    };
+    console.log(action);
+    const { title, author, content, postedTime } = action.article;
     return {
       ...state,
-      articles: [...state.articles, newArticle]
+      articles: [
+        ...state.articles,
+        {
+          ...action.article,
+          id: state.articles.length
+            ? state.articles[state.articles.length - 1].id + 1
+            : 1,
+          convertedPostedTime: "a few seconds ago"
+        }
+      ]
     };
   }
 

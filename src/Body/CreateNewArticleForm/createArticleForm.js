@@ -50,9 +50,9 @@ class CreateArticle extends Component {
     e.preventDefault();
     const { title, author, articleContent } = this.state;
     const postedTime = new Date().getTime();
-    console.log(postedTime);
+    console.log({ ...this.state, postedTime });
     // console.log(this.props);
-    this.props.addArticle(title, author, articleContent, postedTime);
+    this.props.addArticle({ ...this.state, postedTime });
     this.props.history.push("/");
   };
 }

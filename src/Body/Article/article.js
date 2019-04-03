@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 class Article extends Component {
   render() {
+    console.log(this.props);
     const article = this.props.article ? (
       <div className="card">
         <h1 className="center title">{this.props.article.title}</h1>
@@ -12,7 +13,7 @@ class Article extends Component {
         <p>
           <i>{this.props.article.convertedPostedTime}</i>
         </p>
-        <p>{this.props.article.content}</p>
+        <p>{this.props.article.articleContent}</p>
       </div>
     ) : (
       <div className="title center mtop">
