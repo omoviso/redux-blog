@@ -1,35 +1,54 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { Redirect } from "react-router-dom";
+import moment from "moment";
 class Article extends Component {
   render() {
-    console.log(this.props);
-    const article = this.props.article ? (
+    const { auth, article } = this.props;
+    console.log(article);
+    if (!auth.uid) {
+      return <Redirect to="/signin" />;
+    }
+
+    const activeArticle = article ? (
       <div className="card">
-        <h1 className="center title">{this.props.article.title}</h1>
-        <h4 className="author">
-          By <i>{this.props.article.author}</i>
+        <h1>{article.title}</h1>
+        <h4>
+          By{" "}
+          <i>
+            {article.authorFirstName} {article.authorLastName}
+          </i>
         </h4>
         <p>
-          <i>{this.props.article.convertedPostedTime}</i>
+          <i className="timeStamp">
+            {moment(article.createdAt.toDate()).calendar()}
+          </i>
         </p>
-        <p>{this.props.article.articleContent}</p>
+        <br />
+        <p>{article.articleContent}</p>
       </div>
     ) : (
-      <div className="title center mtop">
-        <strong>Sorry, I can't find the article</strong>
+      <div className="titleCenter">
+        <strong>Loading article...</strong>
       </div>
     );
-    return article;
+    return activeArticle;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
+  const article = state.firestore.data.projects
+    ? state.firestore.data.projects[id]
+    : null;
   return {
-    article: state.articles.find(arc => {
-      return arc.id == id;
-    })
+    article,
+    auth: state.firebase.auth
   };
 };
-export default connect(mapStateToProps)(Article);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "projects" }])
+)(Article);

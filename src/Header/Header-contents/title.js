@@ -3,11 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 
 const Title = () => {
   return (
-    <div className="title">
-      <Link to="/" className="logo">
-        My Blog
-      </Link>
-    </div>
+    <React.Fragment>
+      <Link to="/">My Blog</Link>
+    </React.Fragment>
   );
 };
 

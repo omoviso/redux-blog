@@ -1,14 +1,17 @@
 export const addArticle = article => {
-  console.log(article);
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
+    const profile = getState().firebase.profile;
+    console.log(profile);
+    const authorId = getState().firebase.auth.uid;
+    console.log(authorId);
     firestore
       .collection("projects")
       .add({
         ...article,
-        authorFirstName: "Thanh",
-        authorLastName: "Nguyen",
-        authorId: 12345,
+        authorFirstName: profile.firstName,
+        authorLastName: profile.lastName,
+        authorId: authorId,
         createdAt: new Date()
       })
       .then(() => {
@@ -16,7 +19,7 @@ export const addArticle = article => {
         dispatch(project);
       })
       .catch(err => {
-        dispatch({ type: "ADD_PROJECT_ERROR", err });
+        dispatch({ type: "ADD_ARTICLE_ERROR", err });
       });
   };
 };

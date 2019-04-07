@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addArticle } from "../../Actions/addArticle";
+import { addArticle } from "../../Actions/addArticleAction";
+import { Redirect } from "react-router-dom";
 
 class CreateArticle extends Component {
-  state = {
-    title: "",
-    author: "Thanh Nguyen",
-    articleContent: ""
-  };
   render() {
+    const { auth } = this.props;
+
+    if (!auth.uid) {
+      return <Redirect to="/signin" />;
+    }
+
     return (
-      <form className="card" onSubmit={this.handleSubmit}>
+      <form className="card form" onSubmit={this.handleSubmit}>
         <label htmlFor="title">Title:</label>
-        <br />
         <input
           type="text"
           className="full-width input"
@@ -22,9 +23,9 @@ class CreateArticle extends Component {
           required
           onChange={this.handleChange}
         />
-        <br />
+
         <label htmlFor="articleContent">Content:</label>
-        <br />
+
         <textarea
           id="articleContent"
           required
@@ -39,32 +40,34 @@ class CreateArticle extends Component {
   }
 
   handleChange = e => {
-    const propKey = e.target.id;
+    const stateKey = e.target.id;
     const inputValue = e.target.value;
     this.setState({
-      [propKey]: inputValue
+      [stateKey]: inputValue
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    const { title, author, articleContent } = this.state;
-    const postedTime = new Date().getTime();
-    console.log({ ...this.state, postedTime });
-    // console.log(this.props);
-    this.props.addArticle({ ...this.state, postedTime });
+    this.props.addArticle(this.state);
     this.props.history.push("/");
   };
 }
 
-const mapActionToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    addArticle: (title, author, content, postedTime) => {
-      dispatch(addArticle(title, author, content, postedTime));
+    auth: state.firebase.auth
+  };
+};
+
+const dispatchActionToProps = dispatch => {
+  return {
+    addArticle: article => {
+      dispatch(addArticle(article));
     }
   };
 };
 export default connect(
-  null,
-  mapActionToProps
+  mapStateToProps,
+  dispatchActionToProps
 )(CreateArticle);

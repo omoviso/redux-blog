@@ -1,30 +1,26 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import moment from "moment";
 
-const Notifications = ({ articles }) => {
-  const articleList = articles.length ? (
-    articles.map(article => {
+const Notifications = ({ notifications }) => {
+  let notificationList = null;
+  if (notifications && notifications.length > 0) {
+    notificationList = notifications.map(notification => {
       return (
-        <div className="card" key={article.id}>
+        <div className="card spaceBottom" key={notification.id}>
           <p>
-            {article.author} posted{" "}
-            <i>
-              {article.title} {article.convertedPostedTime}
-            </i>
+            <b>{notification.user}</b> {notification.content}
+            <span className="timeStamp">
+              <br />
+              {moment(notification.time.toDate()).calendar()}
+            </span>
           </p>
         </div>
       );
-    })
-  ) : (
-    <h1 className="title center"> No News At The Moment!</h1>
-  );
-  return <div className="notifications">{articleList}</div>;
+    });
+  } else {
+    notificationList = <h1 className="titleCenter"> No News At The Moment!</h1>;
+  }
+  return <div className="notifications">{notificationList}</div>;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    articles: state.articles
-  };
-};
-
-export default connect(mapStateToProps)(Notifications);
+export default Notifications;

@@ -1,33 +1,35 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
-const Sumamry = ({ articles }) => {
-  const articleList = articles.length ? (
-    articles.map(article => {
+const Sumamry = ({ articles, match }) => {
+  let articleList = [];
+  let pageId = match.params.id || 1;
+
+  if (articles && articles.length > 0) {
+    const firstArticle = (pageId - 1) * 4;
+    const finalArticle = firstArticle + 4;
+    articles = articles.slice(firstArticle, finalArticle);
+
+    articleList = articles.map(article => {
       return (
-        <div className="card" key={article.id}>
-          <h1 className="title">
-            <Link className="linkColor" to={`/article/${article.id}`}>
-              {article.title}
-            </Link>
+        <div className="card spaceBottom" key={article.id}>
+          <h1>
+            <Link to={`/article/${article.id}`}>{article.title}</Link>
           </h1>
-          <h4 className="author">Author: {article.author}</h4>
-          <p className="timeline">
-            <i>{article.convertedPostedTime}</i>
+          <h4>
+            By: {article.authorFirstName} {article.authorLastName}
+          </h4>
+          <p className="timeStamp">
+            {moment(article.createdAt.toDate()).calendar()}
           </p>
         </div>
       );
-    })
-  ) : (
-    <h1 className="title center"> No Article At The Moment!</h1>
-  );
+    });
+  } else {
+    articleList = <h1 className="titleCenter"> No Article At The Moment!</h1>;
+  }
   return <div className="summary">{articleList}</div>;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    articles: state.articles
-  };
-};
-export default connect(mapStateToProps)(Sumamry);
+export default Sumamry;

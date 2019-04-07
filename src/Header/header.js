@@ -2,19 +2,24 @@ import React, { Component } from "react";
 import Title from "./Header-contents/title";
 import SignedInNav from "./Header-contents/SignedInNav";
 import SignedOutNav from "./Header-contents/SignedOutNav";
-import "./header.css";
+import { connect } from "react-redux";
 
-class Header extends Component {
-  state = {};
-  render() {
-    return (
-      <div className="header">
+const Header = props => {
+  const { auth } = props;
+  const Navbar = auth.uid ? <SignedInNav /> : <SignedOutNav />;
+  return (
+    <div className="header">
+      <div className="logo">
         <Title />
-        <SignedInNav />
-        <SignedOutNav />
       </div>
-    );
-  }
-}
+      <div className="navBar">{Navbar}</div>
+    </div>
+  );
+};
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+export default connect(mapStateToProps)(Header);

@@ -1,23 +1,34 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { resetError } from "../../Actions/authAction";
 
 const SignedOutNav = props => {
   return (
-    <div className="navBar">
+    <React.Fragment>
       <ul>
         <li>
-          <Link className="" to="/signin">
+          <Link to="/signin" onClick={props.resetError}>
             Log In
           </Link>
         </li>
         <li>
-          <Link className="" to="/signup">
+          <Link to="/signup" onClick={props.resetError}>
             Sign Up
           </Link>
         </li>
+        <li>
+          <div className="transparent">Create New ArtiCle</div>
+        </li>
       </ul>
-    </div>
+    </React.Fragment>
   );
 };
 
-export default SignedOutNav;
+const dispatchActionToProps = dispatch => {
+  return {
+    resetError: () => dispatch(resetError())
+  };
+};
+
+export default connect(dispatchActionToProps)(SignedOutNav);

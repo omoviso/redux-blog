@@ -1,66 +1,175 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  line-height: 20px;
-}
-
-textarea {
-  resize: none;
+  outline: none;
 }
 
 a {
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
-.center {
+ul {
+  list-style: none;
+}
+
+.root {
+  overflow: hidden;
+}
+.App {
+  display: flex;
+  flex-flow: column wrap;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.transparent {
+  visibility: hidden;
+}
+
+.header {
+  /* flex: 1; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  background: grey;
 }
 
-.mtop {
-  margin-top: 10px;
+.body {
+  flex: 1;
+  display: flex;
+  flex-flow: column wrap;
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding: 20px 150px;
+  background: url("https://farm5.staticflickr.com/4062/5169154193_4b8a5a7a80_b.jpg")
+    no-repeat;
+  background-size: 100% 100%;
 }
 
-.linkColor {
-  color: white;
+.logo {
+  flex: 1.5;
+  font-size: 30px;
 }
 
-.card {
-  text-align: justify;
-  /* width: 60%; */
-  padding: 10px;
-  margin: 20px;
-  box-shadow: 0 0 8px 0px grey;
-}
-
-.card.form {
-  margin: 20px 25%;
-  padding: 30px;
-}
-
-.full-width {
-  width: 100%;
-  margin: 5px 0 10px 0;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-button {
-  padding: 10px 30px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.navBar {
+  flex: 1;
   font-size: 20px;
-  border-radius: 8px;
+}
+
+.navBar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navBar ul li {
+  flex: 1;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+}
+
+.navBar ul .profileInitial {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red-text {
+  color: red;
+}
+.card {
+  border-radius: 7px;
   border: 1px solid black;
+  padding: 15px;
+  background: lightgoldenrodyellow;
+}
+
+.container {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.summary {
+  flex: 1;
+  padding-right: 50px;
+}
+
+.summary a {
+  color: blue;
+}
+
+.notifications {
+  flex: 1;
 }
 
 .submit {
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
+  padding: 10px 20px;
+  text-transform: uppercase;
 }
 
-.timeline {
-  margin-bottom: 7px;
+.form input,
+textarea {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  resize: none;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+}
+
+.small {
+  width: 50%;
+  position: relative;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, 0);
+}
+
+.titleCenter {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.spaceBottom {
+  margin-bottom: 20px;
+}
+
+.timeStamp {
+  color: gray;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.pagination button {
+  padding: 5px 10px;
+  font-size: 15px;
+}
+
+.linkColor {
+  color: blue;
+}
+
+@media only screen and (max-width: 768px) {
+  .App {
+    overflow: auto;
+  }
 }
