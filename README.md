@@ -1,5 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+Author's note: the project is hosted on firebase, the link to the project: https://my-blog-78a33.firebaseapp.com/
 ## Available Scripts
 
 In the project directory, you can run:
