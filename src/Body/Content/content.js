@@ -17,14 +17,20 @@ const Content = props => {
 
   return (
     <React.Fragment>
-      <div className="container">
-        <Summary articles={articles} match={match} />
-        <Notification notifications={notifications} />
+      <div className="container-fluid bg-transparent">
+        <div className="row">
+          <div className="col-md-6 card summary border-0">
+            <Summary articles={articles} match={match} />
+          </div>
+          <div className="col-md-6 card border-0">
+            <Notification notifications={notifications} />
+          </div>
+        </div>
       </div>
       {/* SET PAGINATION */}
-      <div className="pagination">
+      <ul className="pagination">
         <Pagination articles={articles} pageId={match} />
-      </div>
+      </ul>
     </React.Fragment>
   );
 };

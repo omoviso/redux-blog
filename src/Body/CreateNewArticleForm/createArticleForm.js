@@ -12,30 +12,35 @@ class CreateArticle extends Component {
     }
 
     return (
-      <form className="card form" onSubmit={this.handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          className="full-width input"
-          id="title"
-          name="title"
-          placeholder="Title"
-          required
-          onChange={this.handleChange}
-        />
+      <div className="form">
+        <form
+          className="form-group bg-white p-3 m-1"
+          onSubmit={this.handleSubmit}
+        >
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name="title"
+            placeholder="Title"
+            required
+            onChange={this.handleChange}
+          />
 
-        <label htmlFor="articleContent">Content:</label>
+          <label htmlFor="articleContent">Content:</label>
 
-        <textarea
-          id="articleContent"
-          required
-          className="full-width"
-          placeholder="Content"
-          rows="20"
-          onChange={this.handleChange}
-        />
-        <button className="submit button">Submit</button>
-      </form>
+          <textarea
+            id="articleContent"
+            required
+            className="form-control"
+            placeholder="Content"
+            rows="15"
+            onChange={this.handleChange}
+          />
+          <button className="btn btn-secondary submit h3 ">Submit</button>
+        </form>
+      </div>
     );
   }
 

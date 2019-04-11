@@ -11,7 +11,7 @@ class Body extends Component {
   state = {};
   render() {
     return (
-      <div className="body">
+      <div className="container-fluid h-100 p-4 body">
         <Switch>
           <Route exact path="/" component={Content} />
           <Route exact path="/page/:id" component={Content} />

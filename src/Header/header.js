@@ -8,11 +8,13 @@ const Header = props => {
   const { auth } = props;
   const Navbar = auth.uid ? <SignedInNav /> : <SignedOutNav />;
   return (
-    <div className="header">
-      <div className="logo">
-        <Title />
-      </div>
-      <div className="navBar">{Navbar}</div>
+    <div className="container-fluid bg-secondary header">
+      <ul className="nav row align-items-center">
+        <li className="nav-item col-sm row justify-content-center">
+          <Title />
+        </li>
+        <li className="nav-item col-sm">{Navbar}</li>
+      </ul>
     </div>
   );
 };

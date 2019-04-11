@@ -13,12 +13,14 @@ class Article extends Component {
     }
 
     const activeArticle = article ? (
-      <div className="card">
-        <h1>{article.title}</h1>
-        <h4>
+      <div className="card-body">
+        <h1 className="card-title">{article.title}</h1>
+        <h4 className="card-text">
           By{" "}
           <i>
-            {article.authorFirstName} {article.authorLastName}
+            <b>
+              {article.authorFirstName} {article.authorLastName}
+            </b>
           </i>
         </h4>
         <p>
@@ -26,11 +28,10 @@ class Article extends Component {
             {moment(article.createdAt.toDate()).calendar()}
           </i>
         </p>
-        <br />
         <p>{article.articleContent}</p>
       </div>
     ) : (
-      <div className="titleCenter">
+      <div className="h1 text-center text-white">
         <strong>Loading article...</strong>
       </div>
     );

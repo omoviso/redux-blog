@@ -19,31 +19,33 @@ class SignInForm extends Component {
     const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to="/" />;
     return (
-      <div className="card small form">
-        <form onSubmit={this.handleSubmit}>
+      <div className="signIn form bg-white p-3">
+        <form className="form-group mb-0" onSubmit={this.handleSubmit}>
           <label htmlFor="email">Email</label>
-          <br />
+
           <input
-            className="full-width"
+            className="form-control"
             type="text"
             id="email"
             placeholder="email"
             onChange={this.handleChange}
           />
-          <br />
+
           <label htmlFor="password">Password</label>
-          <br />
+
           <input
-            className="full-width"
+            className="form-control"
             type="password"
             id="password"
             placeholder="password"
             onChange={this.handleChange}
           />
-          <button>Login</button>
+          <button className="btn btn-secondary h3 mt-2">Login</button>
         </form>
-        <div className="red-text">{authError ? <p>{authError}</p> : null}</div>
-        <Link to="/signup" className="linkColor">
+        <div className="text-danger">
+          {authError ? <p>{authError}</p> : null}
+        </div>
+        <Link to="/signup" className="signUpLink">
           Need an account? Click here!
         </Link>
       </div>

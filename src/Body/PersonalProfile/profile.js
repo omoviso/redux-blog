@@ -12,10 +12,10 @@ const Profile = props => {
 
   const joinedDate = new Date(Number(auth.createdAt)).toDateString();
   return (
-    <div className="card">
-      <h1>First Name: {profile.firstName}</h1>
-      <h1>Last Name: {profile.lastName}</h1>
-      <h1>Joined date: {joinedDate}</h1>
+    <div className="card-body">
+      <h3>First Name: {profile.firstName}</h3>
+      <h3>Last Name: {profile.lastName}</h3>
+      <h3>Joined date: {joinedDate}</h3>
     </div>
   );
 };

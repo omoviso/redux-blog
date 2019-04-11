@@ -5,21 +5,25 @@ import { connect } from "react-redux";
 
 const SignedInNav = props => {
   return (
-    <React.Fragment>
-      <ul>
-        <li>
-          <NavLink to="/create">Create New Article</NavLink>
-        </li>
-        <li>
-          <a onClick={props.signOut}>Log Out</a>
-        </li>
-        <li>
-          <div className="profileInitial">
-            <NavLink to="/profile">{props.initial}</NavLink>
-          </div>
-        </li>
-      </ul>
-    </React.Fragment>
+    <ul className="nav nav-item nav-justified h6 ">
+      <li className="nav-item row justify-content-center align-items-center">
+        <NavLink to="/create" className="nav-link text-white">
+          Create New Article
+        </NavLink>
+      </li>
+      <li className="nav-item row justify-content-center align-items-center">
+        <NavLink to="/" onClick={props.signOut} className="nav-link text-white">
+          Log Out
+        </NavLink>
+      </li>
+      <li className="nav-item row justify-content-center align-items-center">
+        <div className="profileInitial">
+          <NavLink to="/profile" className="nav-link text-white">
+            {props.initial}
+          </NavLink>
+        </div>
+      </li>
+    </ul>
   );
 };
 

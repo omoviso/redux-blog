@@ -5,23 +5,26 @@ import { resetError } from "../../Actions/authAction";
 
 const SignedOutNav = props => {
   return (
-    <React.Fragment>
-      <ul>
-        <li>
-          <Link to="/signin" onClick={props.resetError}>
-            Log In
-          </Link>
-        </li>
-        <li>
-          <Link to="/signup" onClick={props.resetError}>
-            Sign Up
-          </Link>
-        </li>
-        <li>
-          <div className="transparent">Create New ArtiCle</div>
-        </li>
-      </ul>
-    </React.Fragment>
+    <ul className="nav nav-item nav-justified">
+      <li className="nav-item h5">
+        <NavLink
+          to="/signin"
+          className="nav-link text-white"
+          onClick={props.resetError}
+        >
+          Log In
+        </NavLink>
+      </li>
+      <li className="nav-item h5">
+        <NavLink
+          to="/signup"
+          className="nav-link text-white"
+          onClick={props.resetError}
+        >
+          Sign Up
+        </NavLink>
+      </li>
+    </ul>
   );
 };
 

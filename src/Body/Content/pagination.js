@@ -5,22 +5,26 @@ const Pagination = ({ articles, pageId }) => {
   // const articles = props.pageId;
   // console.log(pageId);
   let pagination = [];
-  if (articles && articles.length > 4) {
+  if (articles && articles.length > 3) {
     let i = 0;
-    for (i = 0; i < Math.ceil(articles.length) / 4; i++) {
+    for (i = 0; i < Math.ceil(articles.length) / 3; i++) {
       pagination.push(
-        <NavLink key={Math.random()} to={`/page/${i + 1}`}>
-          <button>{i + 1}</button>
-        </NavLink>
+        <li className="page-item" key={Math.random()}>
+          <NavLink className="page-link" to={`/page/${i + 1}`}>
+            {i + 1}
+          </NavLink>
+        </li>
       );
     }
 
     const nextPage =
       Number(pageId.params.id) === i ? i : Number(pageId.params.id) + 1;
     pagination.push(
-      <NavLink key={Math.random()} to={`/page/${Number(nextPage)}`}>
-        <button>>></button>
-      </NavLink>
+      <li className="page-item" key={Math.random()}>
+        <NavLink className="page-link" to={`/page/${Number(nextPage)}`}>
+          >>
+        </NavLink>
+      </li>
     );
   }
   return pagination;

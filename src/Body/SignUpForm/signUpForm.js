@@ -22,11 +22,11 @@ class SignUpForm extends Component {
     if (auth.uid) return <Redirect to="/" />;
 
     return (
-      <div className="card small form">
-        <form onSubmit={this.handleSubmit}>
+      <div className="signIn form bg-white p-3">
+        <form className="form-group" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">First Name</label>
           <input
-            className="full-width"
+            className="form-control"
             type="text"
             id="firstName"
             placeholder="First Name"
@@ -35,7 +35,7 @@ class SignUpForm extends Component {
 
           <label htmlFor="lastName">Last Name</label>
           <input
-            className="full-width"
+            className="form-control"
             type="text"
             id="lastName"
             placeholder="Last Name"
@@ -44,7 +44,7 @@ class SignUpForm extends Component {
 
           <label htmlFor="email">Email</label>
           <input
-            className="full-width"
+            className="form-control"
             type="email"
             id="email"
             placeholder="Email"
@@ -53,17 +53,17 @@ class SignUpForm extends Component {
 
           <label htmlFor="password">Password</label>
           <input
-            className="full-width"
+            className="form-control"
             type="password"
             id="password"
             placeholder="Password"
             onChange={this.handleChange}
           />
 
-          <div className="red-text">
+          <div className="text-danger">
             {authError ? <p>{authError}</p> : null}
           </div>
-          <button>Sign Up</button>
+          <button className="btn btn-secondary submit">Sign Up</button>
         </form>
       </div>
     );
